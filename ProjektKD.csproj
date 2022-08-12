@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{703F22D8-26CB-44B4-B253-BAC6392BE13E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ProjektKD</RootNamespace>
+    <AssemblyName>ProjektKD</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Heroes\Archer.cs" />
+    <Compile Include="Entities\Heroes\Hero.cs" />
+    <Compile Include="Entities\Heroes\Knight.cs" />
+    <Compile Include="Entities\Heroes\Wizard.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Monsters\Boss.cs" />
+    <Compile Include="Entities\Monsters\Elite.cs" />
+    <Compile Include="Factories\DragonFactory.cs" />
+    <Compile Include="Factories\EliteFactory.cs" />
+    <Compile Include="Factories\IMonsterFactory.cs" />
+    <Compile Include="Factories\MonsterFactory.cs" />
+    <Compile Include="Entities\Monsters\Monster.cs" />
+    <Compile Include="Entities\Monsters\Dragon.cs" />
+    <Compile Include="Entities\Monsters\Werewolf.cs" />
+    <Compile Include="Entities\Monsters\Wolf.cs" />
+    <Compile Include="Factories\WerewolfFactory.cs" />
+    <Compile Include="Factories\WolfFactory.cs" />
+    <Compile Include="Gui\ConsoleGui.cs" />
+    <Compile Include="Gui\GameGui.cs" />
+    <Compile Include="Navigation\EntityBrowser.cs" />
+    <Compile Include="Navigation\Game.cs" />
+    <Compile Include="Navigation\GameEnd.cs" />
+    <Compile Include="Navigation\INavigation.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
