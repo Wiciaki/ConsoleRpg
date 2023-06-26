@@ -1,46 +1,27 @@
 ﻿namespace ProjektKD.Entities
 {
     using System;
-    using System.Collections.Generic;
+
+    using ProjektKD.Entities.Attacks;
 
     public abstract class Entity
     {
         public abstract string GetDescription();
 
-        protected readonly Random R;
-
-        public int Attack { get; }
+        public int Hp { get; protected set; }
 
         public int MaxHp { get; }
 
-        public int Hp { get; protected set; }
+        private readonly Attack[] attacks;
 
-        protected readonly List<int> attacks;
-
-        protected readonly List<string> descriptions;
-
-        public int GetAttackDamage(int i)
+        public virtual Attack[] GetAvailableAttacks()
         {
-            return attacks[i];
-        }
-
-        public string GetAttackDescription(int i)
-        {
-            return descriptions[i];
-        }
-
-        public virtual void NextAttack()
-        {
-            attacks.Clear();
-            descriptions.Clear();
-
-            attacks.Add(Attack - 2 + R.Next(0, 4));
-            descriptions.Add(GetName() + " attacks, dealing " + attacks[0] + " damage");
+            return this.attacks;
         }
 
         public virtual void Damage(int amount)
         {
-            this.Hp = Math.Max(0, Hp - amount);
+            this.Hp = Math.Max(0, this.Hp - amount);
         }
 
         public string GetName()
@@ -50,17 +31,14 @@
 
         public bool IsDead()
         {
-            return Hp <= 0;
+            return this.Hp <= 0;
         }
 
-        protected Entity(int attack, int maxHp)
+        protected Entity(Attack[] attacks, int maxHp)
         {
-            this.Attack = attack;
+            this.attacks = attacks;
             this.MaxHp = maxHp;
             this.Hp = maxHp;
-            this.R = new Random();
-            this.attacks = new List<int>();
-            this.descriptions = new List<string>();
         }
     }
 }

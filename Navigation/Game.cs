@@ -107,14 +107,12 @@
 
         private void FightWindow(Monster monster, string message = null)
         {
-            Hero.NextAttack();
-            monster.NextAttack();
-
             var title = "The beast looks at you and salivates...";
-            var index = Gui.ShowSelection(title, message, Hero.GetAttackOptions(), Hero);
-            
-            Hero.UseAttack(index);
-            monster.Damage(Hero.GetAttackDamage(index));
+            var attacks = Hero.GetAvailableAttacks();
+            var index = Gui.ShowSelection(title, message, attacks.Select(a => a.Description).ToArray(), Hero);
+            var heroAttack = attacks[index].Execute();
+
+            monster.Damage(heroAttack.Damage);
 
             if (monster.IsDead())
             {
@@ -131,7 +129,8 @@
             }
             else
             {
-                Hero.Damage(monster.GetAttackDamage(0));
+                var monsterAttack = monster.GetAvailableAttacks().First().Execute();
+                Hero.Damage(monsterAttack.Damage);
 
                 if (Hero.IsDead())
                 {
@@ -140,7 +139,7 @@
                     return;
                 }
 
-                message = Hero.GetAttackDescription(index) + "\n\n\t" + monster.GetAttackDescription(0);
+                message = monster.ExtraMessage() + heroAttack.Message + "\n\n\t" + monsterAttack.Message;
                 message += $"\n\n\t{monster.GetName()} has {monster.Hp}HP left";
 
                 FightWindow(monster, message);

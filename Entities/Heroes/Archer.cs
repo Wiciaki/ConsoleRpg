@@ -1,10 +1,12 @@
 ﻿namespace ProjektKD.Entities.Heroes
 {
-    using System.Collections.Generic;
+    using System.Linq;
+
+    using ProjektKD.Entities.Attacks;
 
     public class Archer : Hero
     {
-        public Archer(int attack, int maxHp, int maxMana) : base(attack, maxHp, maxMana)
+        public Archer(int attack, int maxHp, int maxMana) : base(GetAttacks(attack), maxHp, maxMana)
         {
 
         }
@@ -14,31 +16,19 @@
             return "The Archer has a bow which lets him take down his prey from impressive distance\n\tStart your combat 4 hexes away from the enemy\n\n\tPros:\n\t- Starts combat far away from the enemy\n\t- Deals extra damage based on distance\n\n\tCons:\n\t- Single attack option\n\t- Ineffective in close combat";
         }
 
-        public override string[] GetAttackOptions()
+        private static Attack[] GetAttacks(int attack)
         {
-            var options = new List<string> { $"Shoot an enemy ({this.attacks[0]} dmg)" };
+            var basic = new BasicAttack(attack, $"Shot an enemy, dealing {0} dmg", "Shoot an arrow");
+            var spell = new ArcherAttack(attack, $"Hail of arrows landed, dealing {0} dmg", $"Launch a hail of arrows (25 dmg, 10 mana)");
 
-            if (this.Mana >= 10)
-            {
-                options.Add($"Launch a hail of arrows ({this.attacks[1]} dmg, 10 mana)");
-            }
-
-            return options.ToArray();
+            return new Attack[] { basic, spell }.Concat(Sign.SignList).ToArray();
         }
 
-        public override void NextAttack()
+        private class ArcherAttack : Attack
         {
-            base.NextAttack();
-
-            this.attacks.Add(25);
-            this.descriptions.Add($"Hail of arrows landed, dealing {this.attacks[1]} dmg");
-        }
-
-        public override void UseAttack(int index)
-        {
-            if (index == 1)
+            public ArcherAttack(int attack, string message, string description) : base(attack, attack, 10, 0, message, description)
             {
-                this.Mana -= 10;
+
             }
         }
     }

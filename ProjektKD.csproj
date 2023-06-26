@@ -38,6 +38,17 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Attacks\Aard.cs" />
+    <Compile Include="Entities\Attacks\Aksii.cs" />
+    <Compile Include="Entities\Attacks\Attack.cs" />
+    <Compile Include="Entities\Attacks\AttackResult.cs" />
+    <Compile Include="Entities\Attacks\BasicAttack.cs" />
+    <Compile Include="Entities\Attacks\DecoratorAard.cs" />
+    <Compile Include="Entities\Attacks\DecoratorAksii.cs" />
+    <Compile Include="Entities\Attacks\DecoratorIgni.cs" />
+    <Compile Include="Entities\Attacks\DecoratorQueen.cs" />
+    <Compile Include="Entities\Attacks\DecoratorSign.cs" />
+    <Compile Include="Entities\Attacks\ISign.cs" />
     <Compile Include="Entities\Heroes\Archer.cs" />
     <Compile Include="Entities\Heroes\Hero.cs" />
     <Compile Include="Entities\Heroes\Knight.cs" />
@@ -57,12 +68,15 @@
     <Compile Include="Factories\WolfFactory.cs" />
     <Compile Include="Gui\ConsoleGui.cs" />
     <Compile Include="Gui\GameGui.cs" />
+    <Compile Include="Entities\Attacks\Igni.cs" />
     <Compile Include="Navigation\EntityBrowser.cs" />
     <Compile Include="Navigation\Game.cs" />
     <Compile Include="Navigation\GameEnd.cs" />
     <Compile Include="Navigation\INavigation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\Attacks\Queen.cs" />
+    <Compile Include="Entities\Attacks\Sign.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

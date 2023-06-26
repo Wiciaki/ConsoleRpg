@@ -9,6 +9,8 @@
 
         public bool HasRessurected { get; private set; }
 
+        private bool hasDisplayed;
+
         public Boss(int attack, int maxHp) : base(attack, maxHp, true)
         {
 
@@ -27,8 +29,18 @@
             {
                 this.HasRessurected = true;
                 this.Hp = MaxHp;
-                this.descriptions[0] = "The Boss has ressurected!\n\n\t" + this.descriptions[0];
             }
+        }
+
+        public override string ExtraMessage()
+        {
+            if (!this.HasRessurected || this.hasDisplayed)
+            {
+                return base.ExtraMessage();    
+            }
+
+            this.hasDisplayed = true;
+            return "The Boss has resurrected!\n\n\t";
         }
     }
 }

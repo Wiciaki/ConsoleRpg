@@ -2,6 +2,8 @@
 {
     using System;
 
+    using ProjektKD.Entities.Attacks;
+
     public abstract class Hero : Entity
     {
         public int Mana { get; protected set; }
@@ -17,11 +19,12 @@
             this.RemainingWellTimes--;
         }
 
-        public abstract string[] GetAttackOptions();
+        public override Attack[] GetAvailableAttacks()
+        {
+            return Array.FindAll(base.GetAvailableAttacks(), attack => attack.IsAvailable(this.Mana));
+        }
 
-        public virtual void UseAttack(int index) { }
-
-        protected Hero(int attack, int maxHp, int maxMana) : base(attack, maxHp)
+        protected Hero(Attack[] attacks, int maxHp, int maxMana) : base(attacks, maxHp)
         {
             this.MaxMana = maxMana;
             this.Reset();
