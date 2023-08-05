@@ -9,7 +9,7 @@
     {
         public ConsoleGui()
         {
-            Console.Title = "Projekt RPG";
+            Console.Title = "Console RPG";
         }
 
         public override int ShowSelection(string title, string message, string[] options, Hero hero = null)
